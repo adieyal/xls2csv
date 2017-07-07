@@ -1,0 +1,20 @@
+#!/usr/bin/python
+import pandas as pd
+import sys
+import os
+import argparse
+
+parser = argparse.ArgumentParser(description="Convert each sheet in a spreadsheet to a separate csv file")
+parser.add_argument("inputfile", type=str, help="Input spreadsheet", nargs="+")
+args = parser.parse_args()
+
+filenames = args.inputfile
+
+for filename in filenames:
+    basename = os.path.splitext(filename)[0]
+    print "Converting %s" % filename
+    dfs = pd.read_excel(filename, sheetname=None)
+    for sheet in dfs.keys():
+        print "Converting: %s" % sheet
+        sheet_name = "%s_%s.csv" % (basename, sheet.strip())
+        dfs[sheet].to_csv(sheet_name, encoding="utf-8", index=False)

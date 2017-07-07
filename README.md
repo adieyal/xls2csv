@@ -1,0 +1,1 @@
+Basic script to save the sheets in a spreadsheet to individual csv files. I'm sure this has been written a million times before but after 5 minutes of searching for something that fits my purposes I decided to write one myself.
